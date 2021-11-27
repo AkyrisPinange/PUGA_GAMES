@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="util/Semantic-UI-2.4/semantic.min.css">
+
+  <title>Document</title>
+
+
+  <style>
+    body>.grid {
+      height: 100%;
+      background-color: lightblue;
+    }
+
+    .image {
+      margin-top: -100px;
+    }
+
+    .column {
+      max-width: 450px;
+    }
+
+    #main {
+      height: 100%;
+      width: 100%;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id='main'>
+    <div class="container">
+      <form class="ui form">
+        <div class="ui middle aligned center aligned grid">
+          <div class="column" style='margin-top: 200px;'>
+            <h2 class="ui image header">
+              <div class="content" style='color: white;'>
+                Login
+              </div>
+            </h2>
+            <form action="https://s.codepen.io/voltron2112/debug/PqrEPM?" method="get" class="ui large form">
+              <div class="ui stacked secondary  segment">
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input id="login" type="text" name="email" placeholder="Login">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input id="password" type="password" name="password" placeholder="Senha">
+                  </div>
+                </div>
+                <div id="buttonLogin" class="ui fluid large submit blue button">Login</div>
+              </div>
+              <div class="ui error message"></div>
+            </form>
+            <div class="ui message">
+              Não tem conta? <a href="recoverPassword/index.html">Registri-se</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+  </form>
+  <script src="util/jquery/Jquery_3.6.js"></script>
+  <script src="util/Semantic-UI-2.4/semantic.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
