@@ -6,19 +6,21 @@ $( document ).ready(function() {
 
 
 $( "#buttonLogin" ).click(function() {
-    $("#login").val()
-    $("#password").val()
+    let login =  $("#login").val()
+    let password =  $("#password").val()
     $.ajax({
-        url: "DAO/bd_conect.php",
+        url: "CONTROL/login.php",
         type: 'POST',
-        // data: {},
+         data: {'login': login,
+                'password': password},
         dataType: 'json',
         success: function(data, textStatus, jqXHR) {
+            console.log(data)
             
         },
         error: function(jqXHR, textStatus, errorThrown) {
            
-                errorAlert("Ocorreu um erro ao carregar os dados!", "Error!");
+            
             
         }
     });

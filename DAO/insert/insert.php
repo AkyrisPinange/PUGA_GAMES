@@ -7,7 +7,7 @@ function insertUsers($login,$password){
     $sql="INSERT INTO users (nmUser,password)
     VALUES ('$login', $password);";
 
-    return executQuerys($sql);
+    return executQuerys($sql,'insert');
 
 }
 

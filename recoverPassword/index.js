@@ -3,8 +3,8 @@ $( document ).ready(function() {
     $('#main').css("background", " linear-gradient(180deg, rgba(45,42,101,1) 0%, rgba(9,9,121,1) 33%, rgba(0,212,255,1) 100%)")
 });
 
-$( "#buttonLogin" ).click(function() {
-    login = $("#login").val();
+$( "#buttonRegistration" ).click(function() {
+   let login = $("#login").val();
    let passwordOne = $("#passwordOne").val();
    let passwordTwo = $("#passwordTwo").val();
 
@@ -20,6 +20,17 @@ $( "#buttonLogin" ).click(function() {
         alertify.error('Senha não compativeis ');
         return false;
     }
+
+    if(login.length < 6){
+
+        alertify.warning('O nome de usuario que tem ter no minimo 6 caracteres ');
+        return false;
+    }
+    if(passwordOne.length < 6){
+
+        alertify.warning('A Senha que tem ter no minimo 6 caracteres ');
+        return false;
+    }
    
 
     $.ajax({
@@ -29,15 +40,20 @@ $( "#buttonLogin" ).click(function() {
         data: {'login': login,
               'password': passwordOne},
               complete: function(data) {
-                if(data.responseJSON.resultInsert == 'true'){
-                alertify.success('Usuario cadastrado com sucesso')
-                setTimeout(function(){  
+                if(data.responseJSON.resultSelect.length > 0){
 
-                    window.location.replace("../index.html");
+                    alertify.warning('Nome do usuario já cadastrado');
+                
+                }else{
 
-                }, 3000);
-
+                    alertify.success('Usuario cadastrado com sucesso')
+                    setTimeout(function(){  
+                        
+                        window.location.replace("../index.html");
+                        
+                    }, 3000);
                 }
+
             }
             })
     

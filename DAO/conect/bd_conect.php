@@ -1,7 +1,6 @@
 <?php
 
-function executQuerys($sql){
-
+function executQuerys($sql,$param){
     
 $servername = "127.0.0.1";
 $database = "PUGA";
@@ -17,17 +16,33 @@ if (!$conn) {
 
 
 
-
-
-
-if ($conn->query($sql) === TRUE) {
-
+//executa querys inserts
+if($param == 'insert'){  
+  if ($conn->query($sql) === TRUE) {
+    
     return 'true';
   } else {
-    
     return 'false';
   }  
+}
+
+
+//executa querys select
+
+
+if($param == 'select'){ 
+  $result = $conn->query($sql) OR trigger_error($conn->error."[$sql]");
+  
+       $array = array();
     
+        while($data = mysqli_fetch_array($result)){
+
+          $array [] = $data;
+      }
+
+   return $array;
+  
+}
 
 mysqli_close($conn);
 
