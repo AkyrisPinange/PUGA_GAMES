@@ -44,17 +44,31 @@
         <div class="header">
             Cadastro
         </div>
-        <form class="ui form">
-            <div class="ui grid">
-                <div class='six wide column'>
+        <!-- <form id='saveImg' class="ui form" method="post" enctype="multipart/form-data"> -->
+            <div class="main">
+                <h1>Ajax Image Upload</h1><br />
+                <hr>
+                <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+                    <div id="image_preview"><img id="previewing" src="noimage.png" /></div>
+                    <hr id="line">
+                    <div id="selectImage">
+                        <label>Select Your Image</label><br />
+                        <input type="file" name="file" id="file" required />
+                        <input type="submit" value="Upload" class="submit" />
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="ui grid"> -->
+            <!-- <div class='six wide column'>
                     <div class="image content" style="margin-top: 100px; padding:5px;">
                         <div class="ui medium image">
-                            <img id='ImgGame'>
-                            <input type="file" name="fileimagem" id="fileimagem" style='padding: 5px;' />
-                        </div>
+                            <img id='ImgGame'> -->
+            <!-- <input type="file" name="fileimagem" id="fileimagem" style='padding: 5px;' /> -->
+            <!-- <input type="submit" value="Upload" class="submit" /> -->
+            <!-- </div>
                     </div>
-                </div>
-                <div class='four wide column'  style=" margin-top: 20px;padding-bottom: 20px;">
+                </div> -->
+            <!-- <div class='four wide column'  style=" margin-top: 20px;padding-bottom: 20px;">
                     <div class="field">
                         <label>Título</label>
                         <input id='title' type="text" placeholder="Título">
@@ -80,9 +94,9 @@
                         <input id='year' type="date" name="last-name" placeholder="Ano de publicação">
                     </div> 
                     
-                </div>
-            </div>
-        </form>
+                </div> -->
+            <!-- </div> -->
+        <!-- </form> -->
         <div class="actions">
             <div id="registerGames" class="ui positive right labeled icon button">
                 Cadastrar
