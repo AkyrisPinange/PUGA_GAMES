@@ -32,6 +32,13 @@
 
         }
 
+        #gridGames {
+            float: left;
+            width: 100vw;
+            overflow-y: auto;
+            height: 80vh;
+        }
+
         #label {
             color: white;
         }
@@ -81,57 +88,19 @@
             </div>
         </form>
 
-        <div class='ui form' style="padding: 20px;">
-            <div class='six fields'>
-                <div class='field'>
-                    <div class="ui card">
-                        <img src="../imgs/fortnite.jpg">
-                        <div class="content">
-                            <i class=" right floated edit icon"></i>
-                            <div class="header">FortNite</div>
-                            <div class="description">
-                                
-                                <p><B>Estilo do jogo: </B>Tiro</p>
-                                <p><B>Desenvovedora: </B>Epic</p>
-                                <p><B>Nota: </B>10</p>
-                                <p><B>Ano de Publicação: </B>10/11/2021</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            
-                        </div>
-                    </div>
+        <form class='ui form' style="padding: 20px;">
+            <div id='gridGames' class="ui grid">
 
-                </div>
-                <div class='field'>
-                    <div class="ui card">
-                        <img src="../imgs/teste.png">
-                        <div class="content">
-                            <i class="right floated like icon"></i>
-                            <i class="right floated star icon"></i>
-                            <div class="header">Cãozinho</div>
-
-                            <div class="description">
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated like"><i class="like icon"></i> Gostar </span>
-                            <span class="right floated star"><i class="star icon"></i> Favorito </span>
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
-        </div>
+        </form>
     </div>
 
 
 
-    <div class="ui modal">
+    <div id='modalDiv' class="ui modal">
         <i class="close icon"></i>
-        <div class="header">
+        <div id='modalTitle' class="header">
             Cadastro
         </div>
 
@@ -151,7 +120,7 @@
                 </div>
                 <div class="field">
                     <label>Nota</label>
-                    <input id='note' type="number" name="last-name" min="0" max="10" placeholder="Nota">
+                    <input id='note' type="number" name="last-name" min="0" max="10" pattern="[0-9]+" placeholder="Nota">
                 </div>
                 <div class="field">
                     <label>Ano de publicação</label>
@@ -171,11 +140,18 @@
                             <i class="file icon"></i>
                             Escolha o arquivo</label>
                         <input style="display:none" type="file" name="file" id="file" />
-                        <div style='margin-top: -36px; margin-left: 237px'>
+                        <div style='margin-top: -36px; margin-left: 237px; display:none;'>
                             <label for="submit" class="ui right primary icon button">
                                 <i class="save icon"></i>
                                 Cadastrar</label>
                             <input style="display:none" type="submit" id='submit' name='submit' value="Cadastrar" class="submit" />
+                        </div>
+                        <!-- button edit -->
+                        <div style='margin-top: -36px; margin-left: 237px; display:none;' >
+                            <label for="update" class="ui right primary icon button">
+                                <i class="save icon"></i>
+                                Editar</label>
+                            <input style="display:none"  id='update' name='update' value="Editar" class="submit"/>
                         </div>
                     </div>
                 </div>

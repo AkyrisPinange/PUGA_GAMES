@@ -17,10 +17,23 @@ function login($login,$password){
     return executQuerys($sql,'select');
 }
 
+function SelectGamesbyId( $idGame){
+
+    print_r($idGame);
+        $sql="select * from games where idgames = $idGame";
+
+
+    return executQuerys($sql,'select');
+}
+
 
 function SelectGames( $order, $search){
 
-    $sql="select * from games where nm_game LIKE  '%$search%' order by $order;";
+    if($search == ''){
+        $sql="select * from games order by $order desc;";
+    }else{    
+        $sql="select * from games where nm_game LIKE  '%$search%' order by $order desc;";
+    }
 
     return executQuerys($sql,'select');
 }

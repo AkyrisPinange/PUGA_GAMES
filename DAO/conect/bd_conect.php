@@ -37,11 +37,7 @@ if($param == 'select'){
     
         while($data = mysqli_fetch_array($result)){
          
-          array_push($array,array(
-            "idgames"=>$data['idgames'],
-            "nm_game"=>$data['nm_game'],
-            "data_img"=>base64_encode($data['data_img'])
-        ));;
+       $array[] = $data;
       }
       
 
