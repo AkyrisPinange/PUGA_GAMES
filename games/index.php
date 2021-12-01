@@ -66,11 +66,11 @@
                         </div>
                     </div>
                     <div class="field" style="width: 20%;">
-                        <label id="label">Estilo do jogo</label>
-                        <select>
-                            <option value="">Gender</option>
-                            <option value="1">Male</option>
-                            <option value="0">Female</option>
+                        <label id="label">Ordenar por</label>
+                        <select id='order'>
+                            <option value="nota">Nota</option>
+                            <option value="alf">Alfabetica</option>
+                            <option value="date">Data</option>
                         </select>
                     </div>
                     <div class="field" style="margin: 24px;">
@@ -78,7 +78,53 @@
                             Cadastrar </button>
                     </div>
                 </div>
+            </div>
         </form>
+
+        <div class='ui form' style="padding: 20px;">
+            <div class='six fields'>
+                <div class='field'>
+                    <div class="ui card">
+                        <img src="../imgs/fortnite.jpg">
+                        <div class="content">
+                            <i class=" right floated edit icon"></i>
+                            <div class="header">FortNite</div>
+                            <div class="description">
+                                
+                                <p><B>Estilo do jogo: </B>Tiro</p>
+                                <p><B>Desenvovedora: </B>Epic</p>
+                                <p><B>Nota: </B>10</p>
+                                <p><B>Ano de Publicação: </B>10/11/2021</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class='field'>
+                    <div class="ui card">
+                        <img src="../imgs/teste.png">
+                        <div class="content">
+                            <i class="right floated like icon"></i>
+                            <i class="right floated star icon"></i>
+                            <div class="header">Cãozinho</div>
+
+                            <div class="description">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <span class="left floated like"><i class="like icon"></i> Gostar </span>
+                            <span class="right floated star"><i class="star icon"></i> Favorito </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
 

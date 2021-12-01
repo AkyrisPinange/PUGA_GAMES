@@ -20,6 +20,34 @@ $("#register").click(function (e) {
     $('.ui.modal').modal('show');
 })
 
+$("#search").keypress(function () {
+
+    data = new FormData()
+
+    data.append('search', $("#search").val());
+    data.append('order', $("#order").val())
+
+
+    $.ajax({
+        url: "../CONTROL/selectGames.php",
+        type: "POST",
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            let result = data.replace(/\r?\n|\r/g, "");
+            let resultJson = JSON.parse(result)
+
+         
+
+        }
+    });
+
+
+
+});
+
 
 $("#uploadimage").on('submit', (function (e) {
     e.preventDefault();
@@ -29,17 +57,16 @@ $("#uploadimage").on('submit', (function (e) {
     data.append('developer', $('#developer').val())
     data.append('note', $('#note').val())
     data.append('date', $('#date').val())
- 
+
     $.ajax({
-        url: "../CONTROL/saveGame.php", 
-        type: "POST", 
-        data: data , 
-        contentType: false, 
-        cache: false, 
+        url: "../CONTROL/saveGame.php",
+        type: "POST",
+        data: data,
+        contentType: false,
+        cache: false,
         processData: false,
-        success: function (data) 
-        {
-            
+        success: function (data) {
+
         }
     });
 }));

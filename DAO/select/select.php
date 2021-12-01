@@ -2,7 +2,7 @@
 include_once('../DAO/conect/bd_conect.php');
 class select
 {
-function selectUsers($login){
+function SelectUsers($login){
 
     $sql="select nmUser from users where nmUser = '$login';";
 
@@ -13,6 +13,14 @@ function selectUsers($login){
 function login($login,$password){
 
     $sql="select nmUser from users where nmUser = '$login' and password = '$password';";
+
+    return executQuerys($sql,'select');
+}
+
+
+function SelectGames( $order, $search){
+
+    $sql="select * from games where nm_game LIKE  '%$search%' order by $order;";
 
     return executQuerys($sql,'select');
 }

@@ -2,7 +2,7 @@
 include_once('../DAO/conect/bd_conect.php');
 class Insert
 {
-    function insertUsers($login, $password)
+    function InsertUsers($login, $password)
     {
 
         $sql = "INSERT INTO users (nmUser,password)
@@ -11,7 +11,7 @@ class Insert
         return executQuerys($sql, 'insert');
     }
 
-    function insertGame($img,$name, $title,$styleGames,$developer,$note,$date)
+    function InsertGame($img,$name, $title,$styleGames,$developer,$note,$date)
     {
 
         $sql = "INSERT INTO games(nm_game,
@@ -29,7 +29,7 @@ class Insert
                                   '$name',
                                   $note)";
 
-                                  var_dump($sql);
+                                  
 
         return executQuerys($sql, 'insert');
     }

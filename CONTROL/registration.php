@@ -9,7 +9,7 @@ $password = $_POST['password'];
 
 
 
-$resultSelect = (new Select())->selectUsers($login);
+$resultSelect = (new Select())->SelectUsers($login);
 
 
 
@@ -20,7 +20,7 @@ if(count($resultSelect) > 0){
 
  
 if(count($resultSelect) == 0){
-    $resultInsertUser = (new Insert())->insertUsers($login,$password);
+    $resultInsertUser = (new Insert())->InsertUsers($login,$password);
 
     echo json_encode(["status" => 'true','resultInsert'=> $resultInsertUser,
                                         'resultSelect'=> $resultSelect]);
