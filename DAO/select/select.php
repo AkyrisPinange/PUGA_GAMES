@@ -19,7 +19,7 @@ function login($login,$password){
 
 function SelectGamesbyId( $idGame){
 
-    print_r($idGame);
+   
         $sql="select * from games where idgames = $idGame";
 
 

@@ -58,13 +58,8 @@ function search(data) {
 
             result = resultJson.resultGames;
             //valida se é o update
-            if (resultJson.resultGames == undefined) {
+            if (result == undefined) {
                 result = resultJson.resultGamesById
-                Update(this,result);
-                // $(".right.floated.edit.icon").click(function (e) {
-                
-
-                // })
 
             }
 
@@ -106,8 +101,8 @@ function search(data) {
             $('#main').css('height', '100%')
             //chama funçao de update
             $(".right.floated.edit.icon").click(function (e) {
-                Update(this, '');
-
+                
+                Update(this,result)
             })
 
         }
