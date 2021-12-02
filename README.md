@@ -7,8 +7,8 @@
     2. MySql
     3. JavaScript
       1- Jquery
+      2- Semanctic UI
     4.CSS
-      1- Semanctic UI
 ### Bibliotecas
     1.alertify.js
     
