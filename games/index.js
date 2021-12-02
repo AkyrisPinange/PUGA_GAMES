@@ -9,19 +9,18 @@ $(document).ready(function () {
     data.append('search', $("#search").val());
     data.append('order', $("#order").val())
 
-
     search(data);
 });
 
 
-
+//mostra o modal de cadastro
 $("#register").click(function (e) {
     e.preventDefault();
   
     $('#modalDiv').modal('show');
 });
 
-
+//pesquisa pela ordem selecionada
 $("#order").on('change', function () {
     data.append('search', $("#search").val());
     data.append('order', $("#order").val())
@@ -30,6 +29,7 @@ $("#order").on('change', function () {
 
 })
 
+//pesquisa em tempo real no memento da digitação
 $("#search").keyup(function () {
 
     data.append('search', $("#search").val());
@@ -103,16 +103,19 @@ function search(data) {
             //reajusta altura da tela
             $('#main').css('height', '100%')
 
-            
+            //pega o id no jogo selecionado para exclusao
             $(".trash.icon").click(function () {
                 $('#modalDel').modal('show');
                 idGame =  $(this).attr('value');
 
             })
+            //chama a funão de deletar
             $(".ui.green.ok.inverted.button").click(function () {
                 
                 Delete(idGame)
             })
+
+            //pega o rating atual e o id no jogo e chama função de update
             $(".ui.star.rating").click(function () {
                 let note = $(this).rating('get rating');
                 let idNote = $(this).parent().parent().children('i').attr('value')
