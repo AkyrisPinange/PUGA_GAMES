@@ -8,6 +8,13 @@ $( document ).ready(function() {
 $( "#buttonLogin" ).click(function() {
     let login =  $("#login").val()
     let password =  $("#password").val()
+    if (login == '' ||
+    password == ''){
+        alertify.warning('Favor informar Usuario e Senha');
+        return false;
+    }
+   
+
     $.ajax({
         url: "CONTROL/login.php",
         type: 'POST',
@@ -15,8 +22,12 @@ $( "#buttonLogin" ).click(function() {
                 'password': password},
         dataType: 'json',
         success: function(data, textStatus, jqXHR) {
-            console.log(data)
-            
+            if(data.resultSelect.length > 0){
+
+                window.location.href = 'games/index.php';
+            }else if(data.resultSelect.length == 0){
+                alertify.error('Usuario ou senha incorretos ');
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
            

@@ -44,13 +44,21 @@ if($param == 'select'){
    return $array;
   
 }
-
+if($param == 'delete'){ 
+    if ($conn->query($sql) === TRUE) {
+      echo "Record delete successfully";
+    } else {
+     echo "Error delete record: " . $conn->error;
+  }
+}
+if($param == 'update'){ 
+    if ($conn->query($sql) === TRUE) {
+      echo "Record update successfully";
+    } else {
+     echo "Error update record: " . $conn->error;
+  }
+}
 mysqli_close($conn);
 
 
 }
-
-
-?>
-
-

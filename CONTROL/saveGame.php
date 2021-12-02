@@ -15,7 +15,6 @@ $date = $_POST["date"];
 
 $file = '../imgs/';
 $i = 1;
-print_r($file . $name);
 $original_name = $name;
 while(file_exists($file . $name))
 {    $explodeName = explode(".", $original_name);
@@ -25,11 +24,7 @@ while(file_exists($file . $name))
     $i++;
 }
 
-
-
-
-
 move_uploaded_file( $img, '../imgs/'.$name);
-
 $resultInsertGames = (new Insert())->InsertGame($img,$name, $title,$styleGames,$developer,$note,$date);
+
 echo json_encode(["status" => 'true','resultInsert' => $resultInsertGames]);

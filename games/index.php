@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['login'])){
+        header("Location: ../index.html");
+
+    }
+        
+    // session_distroi
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -7,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../util/Semantic-UI-2.4/semantic.min.css">
     <link rel="stylesheet" href="../util/alertfy/css/alertify.min.css">
-
 
     <title>Document</title>
 
@@ -96,8 +106,26 @@
         </form>
     </div>
 
+    <!-- modal confirma del -->
+    <div id="modalDel" class="ui basic modal">
+        <div class="content" style="text-align: center;">
+            <h3>Certeza que deseja excluir?</h3>
+        </div>
+        <div class="actions" style='width: 63%;'>
+            <div class="ui red  cancel  button">
+                <i class="remove icon"></i>
+                No
+            </div>
+            <div class="ui green ok inverted button">
+                <i class="checkmark icon"></i>
+                Yes
+            </div>
+        </div>
+    </div>
 
 
+
+        <!-- modal cadastra -->
     <div id='modalDiv' class="ui modal">
         <i class="close icon"></i>
         <div id='modalTitle' class="header">
@@ -129,40 +157,30 @@
             </div>
         </form>
         <div class="main">
-            <form id="uploadimage" style='padding: 10px;' action="" method="post" enctype="multipart/form-data">
+            <div id='previwerCad'>
                 <div class="field">
                     <h3 style='margin-left: 30px;'>Prévia da Imagem</h3>
                 </div>
-                <img style='width: 210px; height: 130px;' class='border' id="previwer">
+                <img style='width: 210px; height: 130px;margin-left: 10px;' class='border' id="previwer">
                 <div class='two fields' id="selectImage">
-                    <div class="field">
-                        <label for="file" style='width: 210px;' class="ui positive right labeled icon button">
-                            <i class="file icon"></i>
-                            Escolha o arquivo</label>
-                        <input style="display:none" type="file" name="file" id="file" />
-                        <div style='margin-top: -36px; margin-left: 237px; display:none;'>
-                            <label for="submit" class="ui right primary icon button">
-                                <i class="save icon"></i>
-                                Cadastrar</label>
-                            <input style="display:none" type="submit" id='submit' name='submit' value="Cadastrar" class="submit" />
-                        </div>
-                        <!-- button edit -->
-                        <div style='margin-top: -36px; margin-left: 237px; display:none;' >
-                            <label for="update" class="ui right primary icon button">
-                                <i class="save icon"></i>
-                                Editar</label>
-                            <input style="display:none"  id='update' name='update' value="Editar" class="submit"/>
-                        </div>
-                    </div>
                 </div>
+            </div>
+            <form id="uploadimage" style='padding: 10px;' action="" method="post" enctype="multipart/form-data">
+                <div class="field">
+                    <label for="file" style='width: 210px;' class="ui positive right labeled icon button">
+                        <i class="file icon"></i>
+                        Escolha o arquivo</label>
+                    <input style="display:none" type="file" name="file" id="file" />
+                    <div style='margin-top: -36px; margin-left: 237px;'>
+                        <label for="submit" class="ui right primary icon button">
+                            <i class="save icon"></i>
+                            Cadastrar</label>
+                        <input style="display:none" type="submit" id='submit' name='submit' value="Cadastrar" class="submit" />
+                    </div>
             </form>
         </div>
     </div>
-    </div>
 
-    </div>
-
-    </div>
     <script src="../util/jquery/Jquery_3.6.js"></script>
     <script src="../util/Semantic-UI-2.4/semantic.min.js"></script>
     <script src="../util/alertfy/alertify.min.js"></script>

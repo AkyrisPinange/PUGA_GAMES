@@ -3,11 +3,19 @@
 
 include_once('../DAO/select/select.php');
 
-$login = $_POST['login'];
-$password = $_POST['password'];
+session_start();
+
+
+    
+    $resultLogin = (new Select())->login($_POST['login'], $_POST['password']);
+
+    if(count($resultLogin) >0 ){
+        
+        $_SESSION['login'] = $_POST['login'];
+    }
+ 
 
 
 
-$resultLogin = (new Select())->login($login, $password);
 
 echo json_encode(["status" => 'true','resultSelect'=> $resultLogin]);

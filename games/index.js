@@ -1,4 +1,5 @@
 var data = new FormData()
+var idGame;
 $(document).ready(function () {
     $('#main').css("background", " rgb(45,42,101)");
     $('#main').css("background", "linear-gradient(180deg, rgba(45,42,101,1) 0%, rgba(71,9,121,1) 33%, rgba(0,212,255,1) 100%)")
@@ -7,7 +8,6 @@ $(document).ready(function () {
 
     data.append('search', $("#search").val());
     data.append('order', $("#order").val())
-    data.append('idGame', '')
 
 
     search(data);
@@ -15,27 +15,26 @@ $(document).ready(function () {
 
 
 
-
-
 $("#register").click(function (e) {
     e.preventDefault();
-    $('#update').parent().css('display', 'none')
-    $('#submit').parent().css('display', '')
-    $('#modalTitle').html('Cadastrar')
-    $('.ui.modal').modal('show');
-})
+  
+    $('#modalDiv').modal('show');
+});
+
+
 $("#order").on('change', function () {
     data.append('search', $("#search").val());
     data.append('order', $("#order").val())
-    
+
     search(data);
 
 })
+
 $("#search").keyup(function () {
 
     data.append('search', $("#search").val());
     data.append('order', $("#order").val())
-    
+
 
     search(data);
 
@@ -53,8 +52,9 @@ function search(data) {
         success: function (data) {
             let resultData = data.replace(/\r?\n|\r/g, "");
             let resultJson = JSON.parse(resultData)
-            let htmlGrid = '',  result = '';
-           
+            let htmlGrid = '',
+                result = '';
+
 
             result = resultJson.resultGames;
             //valida se é o update
@@ -63,19 +63,19 @@ function search(data) {
 
             }
 
+            //varre a quantidade de games pesquisados e exibe na tela
             $(result).each(function (index) {
 
                 htmlGrid += ` <div class='four wide column"' style='padding: 5px;'>
                 <div class="ui card">
                 <img src="../imgs/${result[index].nm_img}">
                 <div class="content">
-                    <i class=" right floated edit icon" value=${result[index].idgames}></i>
-                    <div class="header">${result[index].nm_game}</div>
-                    <div class="description">
-                    
-                    <p><B>Estilo do jogo: </B>${result[index].game_category}</p>
+                <i class=" right floated trash icon" value=${result[index].idgames}></i>
+                <div class="header">${result[index].nm_game}</div>
+                <div class="description"> 
+                <p><B>Estilo do jogo: </B>${result[index].game_category}</p>
                     <p><B>Desenvovedora: </B>${result[index].distributor}</p>
-                    <p><B>Nota: </B>${result[index].note}</p>
+                    <p><B>Nota: </B><div class="ui star rating" data-rating="${result[index].note}"></div></p>
                     <p><B>Ano de Publicação: </B>${result[index].year_publication}</p>
                     </div>
                     </div>
@@ -85,25 +85,46 @@ function search(data) {
                     </div>`
             });
 
+
+           
+
             //contena elemento gerados no foreach e exibe na tela   
             $('#gridGames').html(htmlGrid);
 
             //aciona brilho amarelo no botão de editar
-            $('.edit.icon').mouseover(function () {
+            $('.trash.icon').mouseover(function () {
 
-                $(this).css('color', '#eab676')
+                $(this).css('color', 'red')
             })
-            $('.edit.icon').mouseout(function () {
+            $('.trash.icon').mouseout(function () {
 
                 $(this).removeAttr('style');
             })
             //reajusta altura da tela
             $('#main').css('height', '100%')
-            //chama funçao de update
-            $(".right.floated.edit.icon").click(function (e) {
-                
-                Update(this,result)
+
+            
+            $(".trash.icon").click(function () {
+                $('#modalDel').modal('show');
+                idGame =  $(this).attr('value');
+
             })
+            $(".ui.green.ok.inverted.button").click(function () {
+                
+                Delete(idGame)
+            })
+            $(".ui.star.rating").click(function () {
+                let note = $(this).rating('get rating');
+                let idNote = $(this).parent().parent().children('i').attr('value')
+                noteGames(idNote,note)
+
+            })
+
+             //ativa nota
+             $('.ui.rating').rating({
+                initialRating: 2,
+                maxRating: 10
+              });
 
         }
 
@@ -113,35 +134,50 @@ function search(data) {
 
 }
 
-function Update(element, result) {
-    // pega id para editar
-    data.append('idGame', $(element).attr('value'))
-    search(data);
+function noteGames(idNote,note){
+    data = new FormData()
+    data.append('idNote', idNote)
+    data.append('note', note)
 
-    if(result == ''){ return false}
+    $.ajax({
+        url: "../CONTROL/updateNote.php",
+        type: "POST",
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            location.reload();
 
-    $('#title').val(result[0].nm_game)
-    $('#styleGames').val(result[0].game_category)
-    $('#developer').val(result[0].distributor)
-    $('#note').val(result[0].note)
-    $('#date').val(result[0].year_publication)
-    $('#modalTitle').html('Editar')
-    $('#previwer').attr('src','../imgs/' + result[0].nm_img)
-    $('#update').parent().css('display', '')
-    $('#submit').parent().css('display', 'none')
-    $('.ui.modal').modal('show');
+        }
+    })
 
-
-    //limpa id apos editado
-    data.append('idGame', '')
 }
 
+function Delete(idGame){
+
+    data = new FormData()
+    data.append('idGame', idGame)
+
+    $.ajax({
+        url: "../CONTROL/deleteGame.php",
+        type: "POST",
+        data:data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            location.reload();
+        }
+    })
+
+}
 
 
 $("#uploadimage").on('submit', (function (e) {
     e.preventDefault();
 
-  
+
     //validas campos vazios 
     if ($('#title').val() == '' ||
         $('#styleGames').val() == '' ||
@@ -151,6 +187,7 @@ $("#uploadimage").on('submit', (function (e) {
         $('#previwer').attr('src') == undefined) {
 
         alertify.warning('Todos os campos devem ser preenchidos');
+        
         return false;
     }
 
@@ -174,11 +211,13 @@ $("#uploadimage").on('submit', (function (e) {
         success: function (data) {
 
             alertify.success('Jogo cadastrado com sucesso')
+            $('.ui.modal').modal('hide');
             $('#title').val('')
             $('#styleGames').val('')
             $('#developer').val('')
             $('#note').val('')
             $('#date').val('')
+            location.reload();
 
         }
     });
@@ -222,8 +261,9 @@ function resizeImage(src, options) {
 }
 
 
-
 var file = document.querySelector('#file');
+var fileUpdate = document.querySelector('#fileUpdate');
+
 
 file.addEventListener('change', function () {
     let image = file.files[0];
