@@ -32,7 +32,7 @@ function SelectGames( $order, $search){
     if($search == ''){
         $sql="select * from games order by $order;";
     }else{    
-        $sql="select * from games where nm_game LIKE  '%$search%' order by $order desc;";
+        $sql="select * from games where nm_game LIKE  '%$search%' order by $order ;";
     }
 
     return executQuerys($sql,'select');
